@@ -152,6 +152,7 @@
             this.but_Calc.TabIndex = 2;
             this.but_Calc.Text = "Calculer";
             this.but_Calc.UseVisualStyleBackColor = true;
+            this.but_Calc.Click += new System.EventHandler(this.button_Click);
             // 
             // rb_Femme
             // 
@@ -236,23 +237,23 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txt_annNaiss;
-        private System.Windows.Forms.TextBox txt_salMoyAnn;
+        public System.Windows.Forms.TextBox txt_annNaiss;
+        public System.Windows.Forms.TextBox txt_salMoyAnn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton rb_Femme;
-        private System.Windows.Forms.RadioButton rb_Homme;
+        public System.Windows.Forms.RadioButton rb_Femme;
+        public System.Windows.Forms.RadioButton rb_Homme;
         private System.Windows.Forms.Button but_Calc;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox txt_result;
-        private System.Windows.Forms.NumericUpDown num_nbEnfant;
-        private System.Windows.Forms.NumericUpDown num_nbTrim;
-        private System.Windows.Forms.NumericUpDown num_ageRetraite;
+        public System.Windows.Forms.RichTextBox txt_result;
+        public System.Windows.Forms.NumericUpDown num_nbEnfant;
+        public System.Windows.Forms.NumericUpDown num_nbTrim;
+        public System.Windows.Forms.NumericUpDown num_ageRetraite;
     }
 }
 
