@@ -22,7 +22,7 @@ namespace TP_NOTE1
         public void button_Click(object sender, EventArgs e)
         {
             bool erreur = true;
-            if ((!rb_Femme.Checked && !rb_Homme.Checked)||(rb_Femme.Checked && rb_Homme.Checked))
+            if ((!rb_Femme.Checked && !rb_Homme.Checked))
             {
                 MessageBox.Show("Aucun genre n'est sélectionné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 erreur = false;
@@ -48,20 +48,28 @@ namespace TP_NOTE1
                 MessageBox.Show("Aucun salaire annuel moyen n'est rentré", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 erreur = false;
             }
-            if (num_ageRetraite.Text == "0")
+            if (num_ageRetraite.Text == "0" || num_ageRetraite.Text == "")
             {
                 MessageBox.Show("Aucun âge de départ à la retraite n'est rentré", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 erreur = false;
             }
-            if (num_nbTrim.Text == "0")
+            if (num_nbTrim.Text == "0" || num_nbTrim.Text == "")
             {
-                MessageBox.Show("Aucun nombre de trimestre n'est rentré n'est choisie", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Aucun nombre de trimestre n'est rentré", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                erreur = false;
+            }
+            if (num_nbEnfant.Text == "")
+            {
+                MessageBox.Show("Aucun nombre d'enfant n'est renseigné", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 erreur = false;
             }
             if (erreur == true)
             {
                 Pension P = new Pension(sexe, Convert.ToDouble(txt_salMoyAnn.Text), Convert.ToInt32(num_nbTrim.Text), Convert.ToInt32(num_nbEnfant.Text), Convert.ToInt32(num_ageRetraite.Text), Convert.ToInt32(txt_annNaiss.Text));
-                double pensionMensuel = P.calculMontantPensionMensuel(P.calculTauxLiquidation(P.calculDecote(P.calculNombreTrimRequis())), P.calculNombreTrimRequis());
+                int nbTrimRequis = P.calculNombreTrimRequis();
+                int decote = P.calculDecote(nbTrimRequis);
+                double tauxLiquid = P.calculTauxLiquidation(decote);
+                double pensionMensuel = P.calculMontantPensionMensuel(tauxLiquid, nbTrimRequis );
                 txt_result.Text = "Votre montant de pension mensuel s'éléve à : "+pensionMensuel+" €";
             }
         }
@@ -88,7 +96,7 @@ namespace TP_NOTE1
         public int AnneeNaissance
         { get { return anneeNaissance; } set { anneeNaissance = value; }}
 
-        public Pension(string sexe, int salMoyAnnu, int nbTrim, int nbEnfant, int ageDepRetraite, int DateNaiss)
+        public Pension(string sexe, double salMoyAnnu, int nbTrim, int nbEnfant, int ageDepRetraite, int DateNaiss)
         {
             genre = sexe; 
             salaireMoyAnn = salMoyAnnu;

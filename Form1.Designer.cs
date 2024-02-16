@@ -222,7 +222,7 @@
             this.Controls.Add(this.txt_salMoyAnn);
             this.Controls.Add(this.txt_annNaiss);
             this.Controls.Add(this.panel1);
-            this.Enabled = false;
+            this.Enabled = true;
             this.Name = "Form1";
             this.Text = "Retraite de base";
             this.panel1.ResumeLayout(false);
