@@ -37,6 +37,5 @@ namespace TP_NOTE1
             anneeNaissance = DateNaiss;
         }
 
-
     }
 }
